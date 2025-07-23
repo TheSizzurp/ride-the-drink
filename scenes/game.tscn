@@ -1,0 +1,463 @@
+[gd_scene load_steps=10 format=3 uid="uid://quqw0tsgeejb"]
+
+[ext_resource type="Texture2D" uid="uid://bt6q8m6gebfrj" path="res://assets/PNG-cards-1.3/card back orange.png" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://deuop80y3e4l5" path="res://scripts/game.gd" id="1_yqjtg"]
+[ext_resource type="Texture2D" uid="uid://buxry7eq5c8b1" path="res://assets/tablecloth_ridethedrin.jpg" id="2_lnu2h"]
+[ext_resource type="AudioStream" uid="uid://b5hi16qto5i4o" path="res://assets/sounds/flipcard.wav" id="4_lbhrr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lnu2h"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.0832642, 0.407713, 0.259995, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.0449657, 0.275715, 0.170364, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p57ef"]
+bg_color = Color(3.24883e-07, 0.319571, 0.0647923, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 3
+expand_margin_left = 20.0
+expand_margin_top = 5.0
+expand_margin_right = 8.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5sy4"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(9.02452e-09, 0.199414, 0.027574, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 8.0
+expand_margin_top = 5.0
+expand_margin_right = 8.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iywne"]
+bg_color = Color(0, 0.423529, 0.0980392, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lbhrr"]
+bg_color = Color(9.02452e-09, 0.199414, 0.027574, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0846132, 0.227621, 0.0845298, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yqjtg")
+
+[node name="PopUpWon" type="PopupPanel" parent="."]
+theme_override_styles/panel = SubResource("StyleBoxFlat_lnu2h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopUpWon"]
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 365.0
+offset_bottom = 109.0
+
+[node name="WonLabel" type="Label" parent="PopUpWon/VBoxContainer"]
+custom_minimum_size = Vector2(350, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="RestartGameButton" type="Button" parent="PopUpWon/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "New Game"
+
+[node name="PopUpStand" type="PopupPanel" parent="."]
+theme_override_styles/panel = SubResource("StyleBoxFlat_lnu2h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopUpStand"]
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 365.0
+offset_bottom = 102.0
+
+[node name="StandLabel" type="Label" parent="PopUpStand/VBoxContainer"]
+custom_minimum_size = Vector2(350, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ResetStandButton" type="Button" parent="PopUpStand/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "New Game"
+
+[node name="PopUpChallenge" type="PopupPanel" parent="."]
+size = Vector2i(200, 100)
+theme_override_styles/panel = SubResource("StyleBoxFlat_lnu2h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopUpChallenge"]
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 365.0
+offset_bottom = 97.0
+
+[node name="PopUpChallengeLabel" type="Label" parent="PopUpChallenge/VBoxContainer"]
+custom_minimum_size = Vector2(350, 50)
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ResetChallengeButton" type="Button" parent="PopUpChallenge/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="PopUpWrongGuess" type="PopupPanel" parent="."]
+gui_embed_subwindows = true
+transient_to_focused = true
+always_on_top = true
+content_scale_mode = 2
+content_scale_aspect = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_lnu2h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopUpWrongGuess"]
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 365.0
+offset_bottom = 115.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="PopUpLabel" type="Label" parent="PopUpWrongGuess/VBoxContainer"]
+custom_minimum_size = Vector2(350, 50)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 5
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ResetButton" type="Button" parent="PopUpWrongGuess/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Restart"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1500.0
+offset_bottom = 1500.0
+texture = ExtResource("2_lnu2h")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VMainBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VMainBoxContainer"]
+layout_mode = 2
+
+[node name="TopBar(HBox)" type="HBoxContainer" parent="CenterContainer/VMainBoxContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="BetBox(HBox)" type="HBoxContainer" parent="CenterContainer/VMainBoxContainer/CenterContainer/TopBar(HBox)"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+
+[node name="BetLabel" type="Label" parent="CenterContainer/VMainBoxContainer/CenterContainer/TopBar(HBox)/BetBox(HBox)"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 5
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 1
+
+[node name="InfoText" type="Label" parent="CenterContainer/VMainBoxContainer/CenterContainer/TopBar(HBox)"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 30
+
+[node name="CardRow(HBox)" type="HBoxContainer" parent="CenterContainer/VMainBoxContainer"]
+custom_minimum_size = Vector2(120, 160)
+layout_direction = 1
+layout_mode = 2
+theme_override_constants/separation = -45
+
+[node name="DeckSprite" type="TextureRect" parent="CenterContainer/VMainBoxContainer/CardRow(HBox)"]
+layout_mode = 2
+texture = ExtResource("1_uwrxv")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Card1" type="TextureRect" parent="CenterContainer/VMainBoxContainer/CardRow(HBox)"]
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Card2" type="TextureRect" parent="CenterContainer/VMainBoxContainer/CardRow(HBox)"]
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Card3" type="TextureRect" parent="CenterContainer/VMainBoxContainer/CardRow(HBox)"]
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 5
+
+[node name="GameArea(HBox)" type="HBoxContainer" parent="CenterContainer/VMainBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -20
+
+[node name="CurrentCardSprite" type="TextureRect" parent="CenterContainer/VMainBoxContainer/GameArea(HBox)"]
+custom_minimum_size = Vector2(200, 400)
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 5
+
+[node name="ChoicesBox(VBox)" type="VBoxContainer" parent="CenterContainer/VMainBoxContainer/GameArea(HBox)"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="RedButton" type="Button" parent="CenterContainer/VMainBoxContainer/GameArea(HBox)/ChoicesBox(VBox)"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(9.02452e-09, 0.199414, 0.027574, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/h_separation = 40
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover = SubResource("StyleBoxFlat_p57ef")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p57ef")
+theme_override_styles/normal = SubResource("StyleBoxFlat_u5sy4")
+text = "Red"
+
+[node name="BlackButton" type="Button" parent="CenterContainer/VMainBoxContainer/GameArea(HBox)/ChoicesBox(VBox)"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(9.02452e-09, 0.199414, 0.027574, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/h_separation = 40
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover = SubResource("StyleBoxFlat_p57ef")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p57ef")
+theme_override_styles/normal = SubResource("StyleBoxFlat_u5sy4")
+text = "Black"
+
+[node name="HigherButton" type="Button" parent="CenterContainer/VMainBoxContainer/GameArea(HBox)/ChoicesBox(VBox)"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(9.02452e-09, 0.199414, 0.027574, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/h_separation = 40
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover = SubResource("StyleBoxFlat_p57ef")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p57ef")
+theme_override_styles/normal = SubResource("StyleBoxFlat_u5sy4")
+text = "Higher"
+
+[node name="LowerButton" type="Button" parent="CenterContainer/VMainBoxContainer/GameArea(HBox)/ChoicesBox(VBox)"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(9.02452e-09, 0.199414, 0.027574, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/h_separation = 40
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover = SubResource("StyleBoxFlat_p57ef")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p57ef")
+theme_override_styles/normal = SubResource("StyleBoxFlat_u5sy4")
+text = "Lower"
+
+[node name="BetweenButton" type="Button" parent="CenterContainer/VMainBoxContainer/GameArea(HBox)/ChoicesBox(VBox)"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(9.02452e-09, 0.199414, 0.027574, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/h_separation = 40
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover = SubResource("StyleBoxFlat_p57ef")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p57ef")
+theme_override_styles/normal = SubResource("StyleBoxFlat_u5sy4")
+text = "Between"
+
+[node name="OutSideButton" type="Button" parent="CenterContainer/VMainBoxContainer/GameArea(HBox)/ChoicesBox(VBox)"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(9.02452e-09, 0.199414, 0.027574, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/h_separation = 40
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover = SubResource("StyleBoxFlat_p57ef")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p57ef")
+theme_override_styles/normal = SubResource("StyleBoxFlat_u5sy4")
+text = "Outside"
+
+[node name="HeartsButton" type="Button" parent="CenterContainer/VMainBoxContainer/GameArea(HBox)/ChoicesBox(VBox)"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(9.02452e-09, 0.199414, 0.027574, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/h_separation = 40
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover = SubResource("StyleBoxFlat_p57ef")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p57ef")
+theme_override_styles/normal = SubResource("StyleBoxFlat_u5sy4")
+text = "Hearts"
+
+[node name="DiamondsButton" type="Button" parent="CenterContainer/VMainBoxContainer/GameArea(HBox)/ChoicesBox(VBox)"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(9.02452e-09, 0.199414, 0.027574, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/h_separation = 40
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover = SubResource("StyleBoxFlat_p57ef")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p57ef")
+theme_override_styles/normal = SubResource("StyleBoxFlat_u5sy4")
+text = "Diamonds"
+
+[node name="ClubsButton" type="Button" parent="CenterContainer/VMainBoxContainer/GameArea(HBox)/ChoicesBox(VBox)"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(9.02452e-09, 0.199414, 0.027574, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/h_separation = 40
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover = SubResource("StyleBoxFlat_p57ef")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p57ef")
+theme_override_styles/normal = SubResource("StyleBoxFlat_u5sy4")
+text = "Clubs"
+
+[node name="SpadesButton" type="Button" parent="CenterContainer/VMainBoxContainer/GameArea(HBox)/ChoicesBox(VBox)"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(9.02452e-09, 0.199414, 0.027574, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/h_separation = 40
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover = SubResource("StyleBoxFlat_p57ef")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p57ef")
+theme_override_styles/normal = SubResource("StyleBoxFlat_u5sy4")
+text = "Spades"
+
+[node name="StandButton" type="Button" parent="CenterContainer/VMainBoxContainer/GameArea(HBox)/ChoicesBox(VBox)"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(9.02452e-09, 0.199414, 0.027574, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/h_separation = 40
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover = SubResource("StyleBoxFlat_p57ef")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p57ef")
+theme_override_styles/normal = SubResource("StyleBoxFlat_u5sy4")
+text = "Stand"
+
+[node name="CardDrawPlayer" type="AudioStreamPlayer" parent="CenterContainer/VMainBoxContainer/GameArea(HBox)/ChoicesBox(VBox)"]
+stream = ExtResource("4_lbhrr")
+
+[node name="RestartButton" type="Button" parent="CenterContainer/VMainBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_iywne")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lbhrr")
+text = "Restart"
+
+[connection signal="pressed" from="PopUpWon/VBoxContainer/RestartGameButton" to="." method="_on_reset_won_button_pressed"]
+[connection signal="pressed" from="PopUpStand/VBoxContainer/ResetStandButton" to="." method="_on_Reset_Stand_button_pressed"]
+[connection signal="pressed" from="PopUpChallenge/VBoxContainer/ResetChallengeButton" to="." method="_on_RestartChallengeButton_pressed"]
+[connection signal="pressed" from="PopUpWrongGuess/VBoxContainer/ResetButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="CenterContainer/VMainBoxContainer/GameArea(HBox)/ChoicesBox(VBox)/RedButton" to="." method="_on_red_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VMainBoxContainer/GameArea(HBox)/ChoicesBox(VBox)/BlackButton" to="." method="_on_black_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VMainBoxContainer/GameArea(HBox)/ChoicesBox(VBox)/HigherButton" to="." method="_on_higher_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VMainBoxContainer/GameArea(HBox)/ChoicesBox(VBox)/LowerButton" to="." method="_on_lower_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VMainBoxContainer/GameArea(HBox)/ChoicesBox(VBox)/BetweenButton" to="." method="_on_between_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VMainBoxContainer/GameArea(HBox)/ChoicesBox(VBox)/OutSideButton" to="." method="_on_outside_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VMainBoxContainer/GameArea(HBox)/ChoicesBox(VBox)/HeartsButton" to="." method="_on_hearts_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VMainBoxContainer/GameArea(HBox)/ChoicesBox(VBox)/DiamondsButton" to="." method="_on_diamonds_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VMainBoxContainer/GameArea(HBox)/ChoicesBox(VBox)/ClubsButton" to="." method="_on_clubs_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VMainBoxContainer/GameArea(HBox)/ChoicesBox(VBox)/SpadesButton" to="." method="_on_spades_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VMainBoxContainer/GameArea(HBox)/ChoicesBox(VBox)/StandButton" to="." method="_on_stand_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VMainBoxContainer/RestartButton" to="." method="_on_restart_big_button_pressed"]

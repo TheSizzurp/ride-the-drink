@@ -1,0 +1,116 @@
+[gd_scene load_steps=8 format=3 uid="uid://fmdi6lk5ky0a"]
+
+[ext_resource type="Script" uid="uid://b5l3kqu1fky06" path="res://scripts/StartGame.gd" id="1_338g5"]
+[ext_resource type="Texture2D" uid="uid://buxry7eq5c8b1" path="res://assets/tablecloth_ridethedrin.jpg" id="2_ttye1"]
+[ext_resource type="Texture2D" uid="uid://vnbeufws4vhi" path="res://assets/icons/two_beer_mug-removebg-preview.png" id="3_l3udk"]
+[ext_resource type="AudioStream" uid="uid://mogei8paar3a" path="res://assets/sounds/card-sounds.mp3" id="3_ocge2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h0xln"]
+bg_color = Color(9.02452e-09, 0.199414, 0.027574, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l3udk"]
+bg_color = Color(0, 0.423529, 0.0980392, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.259287, 0.0455125, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ocge2"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.423529, 0.0980392, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+
+[node name="StartingGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_338g5")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_ttye1")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.5
+offset_top = -29.0
+offset_right = 55.5
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(55.5, 29)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 50
+text = "Ride the Drink"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 350)
+layout_mode = 2
+texture = ExtResource("3_l3udk")
+expand_mode = 2
+
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(0.633757, 0.633757, 0.633757, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_h0xln")
+theme_override_styles/hover = SubResource("StyleBoxFlat_l3udk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h0xln")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ocge2")
+text = "Start Game"
+
+[node name="CardShuffleSound" type="AudioStreamPlayer" parent="CenterContainer/VBoxContainer"]
+stream = ExtResource("3_ocge2")
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]

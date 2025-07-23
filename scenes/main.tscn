@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxfgx2c1gvli3"]
+
+[ext_resource type="Script" uid="uid://bvta0lt3kmjh0" path="res://scripts/main.gd" id="1_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://0og1dieocyor" path="res://scenes/betting.tscn" id="2_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://quqw0tsgeejb" path="res://scenes/game.tscn" id="3_tefeu"]
+[ext_resource type="PackedScene" uid="uid://fmdi6lk5ky0a" path="res://scenes/starting_game.tscn" id="4_o6xl0"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jyhfs")
+
+[node name="Betting" parent="." instance=ExtResource("2_tbgi4")]
+layout_mode = 1
+
+[node name="Game" parent="." instance=ExtResource("3_tefeu")]
+layout_mode = 1
+
+[node name="StartingGame" parent="." instance=ExtResource("4_o6xl0")]
+layout_mode = 1
